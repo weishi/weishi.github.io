@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iPhone | Wei Shi]]></title>
   <link href="http://weishi.github.io/blog/categories/iphone/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-07-19T16:21:58+08:00</updated>
+  <updated>2013-07-19T16:30:23+08:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -42,9 +42,9 @@ the shift effect cancels out and they see your true location in MapView.</p>
 
 <p>In <code>FindMyFriends.app</code>, the following function does the reporting:</p>
 
-<pre><code>ServerInteractionController.h:
+<p><code>objc ServerInteractionController.h:
 -(void)sendMyLocation:(id)location;
-</code></pre>
+</code></p>
 
 <p>Using <code>theos</code>, we can hook into the method and modify the <code>(id)location</code>.</p>
 
@@ -71,10 +71,9 @@ NSNumber *olng=[NSNumber numberWithDouble:nlng];
 
 <p>In <code>aosnotifyd</code>, the following function does the reporting:</p>
 
-<pre><code>AOSFindBaseServiceProvider.h:
--(void)sendCurrentLocation:(id)fp8 isFinished:(BOOL)fp12 forCmd:(id)fp16
-    withReason:(int)fp20 andAccuracyChange:(double)fp24;
-</code></pre>
+<p><code>objc AOSFindBaseServiceProvider.h
+-(void)sendCurrentLocation:(id)fp8 isFinished:(BOOL)fp1 forCmd:(id)fp2 withReason:(int)fp3 andAccuracyChange:(double)fp4;
+</code></p>
 
 <p>This can be patched similarly.</p>
 

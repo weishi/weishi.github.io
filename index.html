@@ -147,9 +147,10 @@ the shift effect cancels out and they see your true location in MapView.</p>
 
 <p>In <code>FindMyFriends.app</code>, the following function does the reporting:</p>
 
-<pre><code>ServerInteractionController.h:
--(void)sendMyLocation:(id)location;
-</code></pre>
+<figure class='code'><figcaption><span>ServerInteractionController.h:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendMyLocation:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">location</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Using <code>theos</code>, we can hook into the method and modify the <code>(id)location</code>.</p>
 
@@ -183,10 +184,10 @@ structure directly.</p>
 
 <p>In <code>aosnotifyd</code>, the following function does the reporting:</p>
 
-<pre><code>AOSFindBaseServiceProvider.h:
--(void)sendCurrentLocation:(id)fp8 isFinished:(BOOL)fp12 forCmd:(id)fp16
-    withReason:(int)fp20 andAccuracyChange:(double)fp24;
-</code></pre>
+<figure class='code'><figcaption><span>AOSFindBaseServiceProvider.h</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sendCurrentLocation:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">fp8</span> <span class="nf">isFinished:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">fp1</span> <span class="nf">forCmd:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">fp2</span> <span class="nf">withReason:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">fp3</span> <span class="nf">andAccuracyChange:</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nv">fp4</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>This can be patched similarly.</p>
 
