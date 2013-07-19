@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iPhone | Wei Shi]]></title>
   <link href="http://weishi.github.io/blog/categories/iphone/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-07-19T15:42:03+08:00</updated>
+  <updated>2013-07-19T16:21:58+08:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -51,17 +51,21 @@ the shift effect cancels out and they see your true location in MapView.</p>
 <p>However, we can fix friends location altogether by hooking the location data
 structure directly.</p>
 
-<pre><code>%hook FMFLocation
-- (void)updateLatitude:(id)lat longitude:(id)lng altitude:(id)alt
-    horizontalAccuracy:(id)acc verticalAccuracy:(id)acc5 course:(id)c speed:(id)s timestamp:(id)ts {
-    double nlat,nlng;
-    transform([lat doubleValue],[lng doubleValue], &amp;nlat, &amp;nlng);
-    NSNumber *olat=[NSNumber numberWithDouble:nlat];
-    NSNumber *olng=[NSNumber numberWithDouble:nlng];
-    %orig(olat,olng,alt,acc,acc5,c,s,ts);
-}
-%end
+<p>``` objc
+%hook FMFLocation
+&ndash; (void)updateLatitude:(id)lat longitude:(id)lng altitude:(id)alt
+horizontalAccuracy:(id)acc verticalAccuracy:(id)acc5 course:(id)c speed:(id)s timestamp:(id)ts {</p>
+
+<pre><code>double nlat,nlng;
+transform([lat doubleValue],[lng doubleValue], &amp;nlat, &amp;nlng);
+NSNumber *olat=[NSNumber numberWithDouble:nlat];
+NSNumber *olng=[NSNumber numberWithDouble:nlng];
+%orig(olat,olng,alt,acc,acc5,c,s,ts);
 </code></pre>
+
+<p>}
+%end
+```</p>
 
 <h2>com.apple.aosnotifyd</h2>
 

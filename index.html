@@ -66,7 +66,7 @@ the common latitude/ &hellip;">
 	<div class="social">
 		
 		
-		<a class="google" href="https://plus.google.com/overmindxp" rel="author" title="Google+">Google+</a>
+		<a class="google" href="https://plus.google.com/115577913983351297851" rel="author" title="Google+">Google+</a>
 		
 		
 		<a class="twitter" href="http://twitter.com/overmindxp" title="Twitter">Twitter</a>
@@ -156,17 +156,28 @@ the shift effect cancels out and they see your true location in MapView.</p>
 <p>However, we can fix friends location altogether by hooking the location data
 structure directly.</p>
 
-<pre><code>%hook FMFLocation
-- (void)updateLatitude:(id)lat longitude:(id)lng altitude:(id)alt
-    horizontalAccuracy:(id)acc verticalAccuracy:(id)acc5 course:(id)c speed:(id)s timestamp:(id)ts {
-    double nlat,nlng;
-    transform([lat doubleValue],[lng doubleValue], &amp;nlat, &amp;nlng);
-    NSNumber *olat=[NSNumber numberWithDouble:nlat];
-    NSNumber *olng=[NSNumber numberWithDouble:nlng];
-    %orig(olat,olng,alt,acc,acc5,c,s,ts);
-}
-%end
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">%</span><span class="n">hook</span> <span class="n">FMFLocation</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">updateLatitude:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">lat</span> <span class="nl">longitude:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">lng</span> <span class="nl">altitude:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">alt</span>
+</span><span class='line'><span class="nl">horizontalAccuracy:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">acc</span> <span class="nl">verticalAccuracy:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">acc5</span> <span class="nl">course:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">c</span> <span class="nl">speed:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">s</span> <span class="nl">timestamp:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">ts</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">nlat</span><span class="p">,</span><span class="n">nlng</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">transform</span><span class="p">([</span><span class="n">lat</span> <span class="n">doubleValue</span><span class="p">],[</span><span class="n">lng</span> <span class="n">doubleValue</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">nlat</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nlng</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">NSNumber</span> <span class="o">*</span><span class="n">olat</span><span class="o">=</span><span class="p">[</span><span class="n">NSNumber</span> <span class="nl">numberWithDouble:</span><span class="n">nlat</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSNumber</span> <span class="o">*</span><span class="n">olng</span><span class="o">=</span><span class="p">[</span><span class="n">NSNumber</span> <span class="nl">numberWithDouble:</span><span class="n">nlng</span><span class="p">];</span>
+</span><span class='line'>    <span class="o">%</span><span class="n">orig</span><span class="p">(</span><span class="n">olat</span><span class="p">,</span><span class="n">olng</span><span class="p">,</span><span class="n">alt</span><span class="p">,</span><span class="n">acc</span><span class="p">,</span><span class="n">acc5</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">ts</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">%</span><span class="n">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>com.apple.aosnotifyd</h2>
 
