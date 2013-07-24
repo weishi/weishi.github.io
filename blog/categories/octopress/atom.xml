@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress, | Wei Shi]]></title>
+  <link href="http://weishi.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://weishi.github.io/"/>
+  <updated>2013-07-24T07:42:58-07:00</updated>
+  <id>http://weishi.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Shi]]></name>
+    <email><![CDATA[weishi@stanford.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Setup an existing Octopress repository after git clone]]></title>
+    <link href="http://weishi.github.io/blog/2013/07/24/setup-an-existing-octopress-repository-after-git-clone/"/>
+    <updated>2013-07-24T07:25:00-07:00</updated>
+    <id>http://weishi.github.io/blog/2013/07/24/setup-an-existing-octopress-repository-after-git-clone</id>
+    <content type="html"><![CDATA[<h2>The Problem</h2>
+
+<p>It seems all the tutorial on Octopress deals with setting up a new repository.
+Recently, I needed to clone the my Octopress repo on a new machine and
+resume writing there. I thought I would be as simple as
+<code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
+However I encourtered the following during deploy</p>
+
+<p>```
+To <a href="https://github.com/username/username.github.io">https://github.com/username/username.github.io</a>
+ ! [rejected]        master &ndash;> master (non-fast-forward)
+ error: failed to push some refs to &lsquo;<a href="https://github.com/username/username.github.io">https://github.com/username/username.github.io</a>&rsquo;
+ hint: Updates were rejected because the tip of your current branch is behind
+ hint: its remote counterpart. Merge the remote changes (e.g. &lsquo;git pull&rsquo;)
+ hint: before pushing again.
+ hint: See the &lsquo;Note about fast-forwards&rsquo; in &lsquo;git push &mdash;help&rsquo; for details.</p>
+
+<h2>Github Pages deploy complete</h2>
+
+<p>cd &ndash;
+```</p>
+
+<h2>The Fix</h2>
+
+<p>I googled around and found no solution.
+After digging into the Rakefile, I came up with a manual fix.
+Basically, you need to create and link the <code>deploy</code> directory to <code>master</code> branch.</p>
+
+<p>First, we clone the repo and switch to the correct branch:</p>
+
+<p><code>
+git clone https://github.com/username/username.github.io.git
+git checkout source
+</code></p>
+
+<p>Then we need to setup the <code>deploy</code> directory.</p>
+
+<p><code>
+mkdir _deploy
+cd _deploy
+git init
+git remote add -t master -f origin https://github.com/username/username.github.io.git
+</code></p>
+
+<p>Done! Now we can make changes in <code>source</code> branch and use <code>rake gen_deploy</code> as usual.</p>
+]]></content>
+  </entry>
+  
+</feed>

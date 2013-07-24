@@ -7,8 +7,7 @@
 	<meta name="author" content="Wei Shi">
 
 	
-	<meta name="description" content="Jul 19th, 2013 Jailbreak, iPhone Fixing Find My Friends Location Shift in China Since China uses a different coordinate system,
-the common latitude/ &hellip;">
+	<meta name="description" content="Jul 24th, 2013 Octopress,, github Setup an Existing Octopress Repository After Git Clone The Problem It seems all the tutorial on Octopress deals &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,6 +94,97 @@ the common latitude/ &hellip;">
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-24T07:25:00-07:00" data-updated="true" itemprop="datePublished">Jul 24<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>Octopress,</a>, <a class='category' href='/blog/categories/github/'>github</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/24/setup-an-existing-octopress-repository-after-git-clone/" itemprop="url">Setup an Existing Octopress Repository After Git Clone</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h2>The Problem</h2>
+
+<p>It seems all the tutorial on Octopress deals with setting up a new repository.
+Recently, I needed to clone the my Octopress repo on a new machine and
+resume writing there. I thought I would be as simple as
+<code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
+However I encourtered the following during deploy</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>To https://github.com/username/username.github.io
+</span><span class='line'> ! [rejected]        master -&gt; master (non-fast-forward)
+</span><span class='line'> error: failed to push some refs to 'https://github.com/username/username.github.io'
+</span><span class='line'> hint: Updates were rejected because the tip of your current branch is behind
+</span><span class='line'> hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+</span><span class='line'> hint: before pushing again.
+</span><span class='line'> hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</span><span class='line'>
+</span><span class='line'>## Github Pages deploy complete
+</span><span class='line'>cd -</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>The Fix</h2>
+
+<p>I googled around and found no solution.
+After digging into the Rakefile, I came up with a manual fix.
+Basically, you need to create and link the <code>deploy</code> directory to <code>master</code> branch.</p>
+
+<p>First, we clone the repo and switch to the correct branch:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/username/username.github.io.git
+</span><span class='line'>git checkout source</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then we need to setup the <code>deploy</code> directory.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir _deploy
+</span><span class='line'>cd _deploy
+</span><span class='line'>git init
+</span><span class='line'>git remote add -t master -f origin https://github.com/username/username.github.io.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done! Now we can make changes in <code>source</code> branch and use <code>rake gen_deploy</code> as usual.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

@@ -4,7 +4,7 @@
   <title><![CDATA[Wei Shi]]></title>
   <link href="http://weishi.github.io/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-07-24T07:17:17-07:00</updated>
+  <updated>2013-07-24T07:42:58-07:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Setup an existing Octopress repository after git clone]]></title>
+    <link href="http://weishi.github.io/blog/2013/07/24/setup-an-existing-octopress-repository-after-git-clone/"/>
+    <updated>2013-07-24T07:25:00-07:00</updated>
+    <id>http://weishi.github.io/blog/2013/07/24/setup-an-existing-octopress-repository-after-git-clone</id>
+    <content type="html"><![CDATA[<h2>The Problem</h2>
+
+<p>It seems all the tutorial on Octopress deals with setting up a new repository.
+Recently, I needed to clone the my Octopress repo on a new machine and
+resume writing there. I thought I would be as simple as
+<code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
+However I encourtered the following during deploy</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>To https://github.com/username/username.github.io
+</span><span class='line'> ! [rejected]        master -&gt; master (non-fast-forward)
+</span><span class='line'> error: failed to push some refs to 'https://github.com/username/username.github.io'
+</span><span class='line'> hint: Updates were rejected because the tip of your current branch is behind
+</span><span class='line'> hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+</span><span class='line'> hint: before pushing again.
+</span><span class='line'> hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</span><span class='line'>
+</span><span class='line'>## Github Pages deploy complete
+</span><span class='line'>cd -</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>The Fix</h2>
+
+<p>I googled around and found no solution.
+After digging into the Rakefile, I came up with a manual fix.
+Basically, you need to create and link the <code>deploy</code> directory to <code>master</code> branch.</p>
+
+<p>First, we clone the repo and switch to the correct branch:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/username/username.github.io.git
+</span><span class='line'>git checkout source</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then we need to setup the <code>deploy</code> directory.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir _deploy
+</span><span class='line'>cd _deploy
+</span><span class='line'>git init
+</span><span class='line'>git remote add -t master -f origin https://github.com/username/username.github.io.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done! Now we can make changes in <code>source</code> branch and use <code>rake gen_deploy</code> as usual.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fixing Find My Friends Location Shift in China]]></title>
