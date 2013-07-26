@@ -4,7 +4,7 @@
   <title><![CDATA[Wei Shi]]></title>
   <link href="http://weishi.github.io/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-07-24T07:42:58-07:00</updated>
+  <updated>2013-07-25T23:35:26-07:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -22,7 +22,7 @@
 
 <p>It seems all the tutorial on Octopress deals with setting up a new repository.
 Recently, I needed to clone the my Octopress repo on a new machine and
-resume writing there. I thought I would be as simple as
+resume writing there. I thought it would be as simple as
 <code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
 However I encourtered the following during deploy</p>
 
