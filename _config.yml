@@ -95,7 +95,15 @@ disqus_show_comment_count: false
 
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-42690127-1
 
 # Facebook Like
+facebook_user: weishi
 facebook_like: false
+
+# Stackoverflow
+stackoverflow_user: wei-shi
+stackoverflow_user_id: 397390
+
+#linkedIn
+linkedin_user: weishics
