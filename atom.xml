@@ -4,7 +4,7 @@
   <title><![CDATA[Wei Shi]]></title>
   <link href="http://weishi.github.io/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-09-02T04:29:41-07:00</updated>
+  <updated>2013-09-02T04:31:17-07:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -29,7 +29,9 @@ The following process installs the necessary headers and patches for OSX Mountai
 
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/rpetrich/iphoneheaders.git</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/rpetrich/iphoneheaders.git
+</span><span class='line'>mv iphoneheaders/* theos/include/</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
