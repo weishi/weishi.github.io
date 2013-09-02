@@ -106,21 +106,29 @@ The &hellip;">
 does not include all iOS headers.
 The following process installs the necessary headers and patches for OSX Mountain Lion.</p>
 
-<h1>Follow the <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">official wiki</a> to install theos.</h1>
+<ol>
+<li><p>Follow the <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">official wiki</a> to install theos.</p></li>
+<li><p>Add iphoneheader to <code>theos/include</code></p></li>
+</ol>
 
-<h1>Add iphoneheader to <code>theos/include</code></h1>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/rpetrich/iphoneheaders.git</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>Copy <code>IOSurfaceAPI.h</code> from OSX library</h1>
+<ol>
+<li>Copy <code>IOSurfaceAPI.h</code> from OSX library</li>
+</ol>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h theos/include/IOSurface </span></code></pre></td></tr></table></div></figure>
 
 
-<h1>Patch <code>IOSurfaceAPI.h</code></h1>
+<ol>
+<li>Patch <code>IOSurfaceAPI.h</code></li>
+</ol>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
