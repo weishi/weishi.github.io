@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Theos | Wei Shi]]></title>
+  <link href="http://weishi.github.io/blog/categories/theos/atom.xml" rel="self"/>
+  <link href="http://weishi.github.io/"/>
+  <updated>2013-09-02T04:15:58-07:00</updated>
+  <id>http://weishi.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Shi]]></name>
+    <email><![CDATA[weishi@stanford.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Install iOS header for theos on OS X Mountain Lion]]></title>
+    <link href="http://weishi.github.io/blog/2013/09/02/install-ios-header-for-theos-on-os-x-mountain-lion/"/>
+    <updated>2013-09-02T02:47:00-07:00</updated>
+    <id>http://weishi.github.io/blog/2013/09/02/install-ios-header-for-theos-on-os-x-mountain-lion</id>
+    <content type="html"><![CDATA[<p>The default Theos installation, as outlined in <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">this wiki</a>,
+does not include all iOS headers.
+The following process installs the necessary headers and patches for OSX Mountain Lion.</p>
+
+<h1>Follow the <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">official wiki</a> to install theos.</h1>
+
+<h1>Add iphoneheader to <code>theos/include</code></h1>
+
+<p><code>
+git clone https://github.com/rpetrich/iphoneheaders.git
+</code></p>
+
+<h1>Copy <code>IOSurfaceAPI.h</code> from OSX library</h1>
+
+<p><code>
+cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h theos/include/IOSurface
+</code></p>
+
+<h1>Patch <code>IOSurfaceAPI.h</code></h1>
+
+<p>```
+/<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
+   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
+count by one until the object is destroyed. </em>/
+//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
+//      IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);</p>
+
+<p>/<em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. </em>/
+//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
+//      IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
