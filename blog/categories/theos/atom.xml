@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Theos | Wei Shi]]></title>
   <link href="http://weishi.github.io/blog/categories/theos/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-09-02T04:19:30-07:00</updated>
+  <updated>2013-09-02T04:21:29-07:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -24,31 +24,21 @@ The following process installs the necessary headers and patches for OSX Mountai
 
 <ol>
 <li><p>Follow the <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">official wiki</a> to install theos.</p></li>
-<li><p>Add iphoneheader to <code>theos/include</code></p></li>
-</ol>
-
+<li><p>Add iphoneheader to <code>theos/include</code></p>
 
 <p><code>
 git clone https://github.com/rpetrich/iphoneheaders.git
-</code></p>
-
-<ol>
-<li>Copy <code>IOSurfaceAPI.h</code> from OSX library</li>
-</ol>
-
+</code></p></li>
+<li><p>Copy <code>IOSurfaceAPI.h</code> from OSX library</p>
 
 <p><code>
 cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h theos/include/IOSurface
-</code></p>
-
-<ol>
-<li>Patch <code>IOSurfaceAPI.h</code></li>
-</ol>
-
+</code></p></li>
+<li><p>Patch <code>IOSurfaceAPI.h</code></p>
 
 <p>```
 /<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
-   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
+Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
 count by one until the object is destroyed. </em>/
 //xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
 //      IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);</p>
@@ -56,7 +46,9 @@ count by one until the object is destroyed. </em>/
 <p>/<em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. </em>/
 //IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
 //      IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);
-```</p>
+```</p></li>
+</ol>
+
 ]]></content>
   </entry>
   
