@@ -11,7 +11,7 @@ categories: Octopress, github
 It seems all the tutorial on Octopress deals with setting up a new repository.
 Recently, I needed to clone the my Octopress repo on a new machine and
 resume writing there. I thought it would be as simple as
-`git clone`, `rake setup_getihub_pages`, `rake new_post`, and `rake gen_deploy`.
+`git clone`, `rake setup_github_pages`, `rake new_post`, and `rake gen_deploy`.
 However I encourtered the following during deploy
 
 ```
@@ -37,6 +37,7 @@ First, we clone the repo and switch to the correct branch:
 
 ```
 git clone https://github.com/username/username.github.io.git
+cd username.github.io.git
 git checkout source
 ```
 
