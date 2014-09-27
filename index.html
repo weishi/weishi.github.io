@@ -7,7 +7,7 @@
 	<meta name="author" content="Wei Shi">
 
 	
-	<meta name="description" content="Jul 24th, 2013 Octopress,, github Setup an Existing Octopress Repository After Git Clone The Problem It seems all the tutorial on Octopress deals &hellip;">
+	<meta name="description" content="Sep 27th, 2014 gtk,, terminal, ubuntu, Change Tab Color on Terminator and Ubuntu Terminal The Problem The default color for active tab on Terminator &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,98 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-27T10:37:00-07:00" data-updated="true" itemprop="datePublished">Sep 27<span>th</span>, 2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gtk/'>gtk,</a>, <a class='category' href='/blog/categories/terminal/'>terminal</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu,</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal/" itemprop="url">Change Tab Color on Terminator and Ubuntu Terminal</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h2>The Problem</h2>
+
+<p>The default color for active tab on Terminator and Ubuntu terminal
+is almost indistinguishable.
+This can be fixed by using another theme,
+but if you want to use your current theme and only tweak the tab color,
+read on.</p>
+
+<p>Because <code>Terminator 0.97</code> still uses GTK2;
+whereas Ubuntu terminal uses GTK3,
+they each require a different method to tweak.</p>
+
+<h2>The Tweak for GTK2</h2>
+
+<p>For <code>Terminator</code> and any other GTK2 applications,
+you can directly edit the <code>gtkrc</code> file your theme uses.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo vim /usr/share/themes/&lt;YOUR_THEME&gt;/gtk-2.0/gtkrc</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Find the following block:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>style "notebook_bg" {
+</span><span class='line'>  bg[NORMAL] = shade (1.02, @bg_color)
+</span><span class='line'>  bg[ACTIVE] = shade (0.97, @bg_color)
+</span><span class='line'>  fg[ACTIVE] = mix (0.8, @fg_color, shade (0.97, @bg_color))
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Replace <code>@bg_color</code> in <code>bg[NORMAL]</code> to a color you like,
+e.g. <code>#FCBC8D</code>.</p>
+
+<h2>The Tweak for GTK3</h2>
+
+<p>For <code>terminal</code> and any other GTK3 applications,
+you can edit the <code>gtk.css</code> in your home directory.
+It is located in <code>#HOME/.config/gtk-3.0/gtk.css</code>.
+Create one if it&rsquo;s not there.</p>
+
+<p>Add the following lines to <code>gtk.css</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>TerminalWindow .notebook tab:active{
+</span><span class='line'>  background-color: #FCBC8D;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For the change to take effect, you need to open up a new application.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

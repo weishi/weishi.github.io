@@ -3,11 +3,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Blog Archives - Wei Shi</title>
+	<title>Change Tab Color on Terminator and Ubuntu Terminal - Wei Shi</title>
 	<meta name="author" content="Wei Shi">
 
 	
-	<meta name="description" content="2014 Sep 27 gtk,, terminal, ubuntu, Change Tab Color on Terminator and Ubuntu Terminal 2013 Jul 24 Octopress,, github Setup an existing Octopress &hellip;">
+	<meta name="description" content="Change Tab Color on Terminator and Ubuntu Terminal The Problem The default color for active tab on Terminator and Ubuntu terminal
+is almost &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -17,7 +18,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="Wei Shi" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://weishi.github.io/blog/archives/">
+	<link rel="canonical" href="http://weishi.github.io/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -98,77 +99,90 @@
 				
 			
 			<div class="mid-col-container">
-				<div id="content" class="inner"><div itemscope itemtype="http://schema.org/Blog">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Change Tab Color on Terminator and Ubuntu Terminal</h1>
+	<div class="entry-content" itemprop="articleBody"><h2>The Problem</h2>
 
-	
+<p>The default color for active tab on Terminator and Ubuntu terminal
+is almost indistinguishable.
+This can be fixed by using another theme,
+but if you want to use your current theme and only tweak the tab color,
+read on.</p>
+
+<p>Because <code>Terminator 0.97</code> still uses GTK2;
+whereas Ubuntu terminal uses GTK3,
+they each require a different method to tweak.</p>
+
+<h2>The Tweak for GTK2</h2>
+
+<p>For <code>Terminator</code> and any other GTK2 applications,
+you can directly edit the <code>gtkrc</code> file your theme uses.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo vim /usr/share/themes/&lt;YOUR_THEME&gt;/gtk-2.0/gtkrc</span></code></pre></td></tr></table></div></figure>
 
 
-	
-	
-	<section class="archives"><h1 class="year">2014</h1>
+<p></p>
 
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2014-09-27T10:37:00-07:00" itemprop="datePublished">Sep 27</time></span>
-		<br>
-		<span class="tags">
+<p>Find the following block:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>style "notebook_bg" {
+</span><span class='line'>  bg[NORMAL] = shade (1.02, @bg_color)
+</span><span class='line'>  bg[ACTIVE] = shade (0.97, @bg_color)
+</span><span class='line'>  fg[ACTIVE] = mix (0.8, @fg_color, shade (0.97, @bg_color))
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-	<a class='category' href='/blog/categories/gtk/'>gtk,</a>, <a class='category' href='/blog/categories/terminal/'>terminal</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu,</a>
+<p>Replace <code>@bg_color</code> in <code>bg[NORMAL]</code> to a color you like,
+e.g. <code>#FCBC8D</code>.</p>
+
+<h2>The Tweak for GTK3</h2>
+
+<p>For <code>terminal</code> and any other GTK3 applications,
+you can edit the <code>gtk.css</code> in your home directory.
+It is located in <code>#HOME/.config/gtk-3.0/gtk.css</code>.
+Create one if it&rsquo;s not there.</p>
+
+<p>Add the following lines to <code>gtk.css</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>TerminalWindow .notebook tab:active{
+</span><span class='line'>  background-color: #FCBC8D;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-</span>
-	    
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal/">Change Tab Color on Terminator and Ubuntu Terminal</a></h1>
+<p>For the change to take effect, you need to open up a new application.</p>
+</div>
+
 </article>
 
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
-
-
+	
+	<a class="addthis_button_tweet"></a>
 	
 	
-		</section>
-	
-	<section class="archives"><h1 class="year">2013</h1>
-
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2013-07-24T07:25:00-07:00" itemprop="datePublished">Jul 24</time></span>
-		<br>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress,</a>, <a class='category' href='/blog/categories/github/'>github</a>
-
-
-</span>
-	    
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/07/24/setup-an-existing-octopress-repository-after-git-clone/">Setup an existing Octopress repository after git clone</a></h1>
-</article>
-
-	
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
 
-<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<span class="date"><time datetime="2013-07-19T14:45:00-07:00" itemprop="datePublished">Jul 19</time></span>
-		<br>
-		<span class="tags">
 
-
-	<a class='category' href='/blog/categories/jailbreak/'>Jailbreak</a>, <a class='category' href='/blog/categories/iphone/'>iPhone</a>
-
-
-</span>
-	    
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/07/19/fixing-find-my-friends-location-shift-in-china/">Fixing Find My Friends Location Shift in China</a></h1>
-</article>
-
-  </section>
-</div></div>
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
 			</div>
 			<footer id="footer" class="inner"><p>
   Copyright &copy; 2014 - Wei Shi -
@@ -189,7 +203,10 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
       var disqus_shortname = 'weishigithub';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://weishi.github.io/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal/';
+        var disqus_url = 'http://weishi.github.io/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

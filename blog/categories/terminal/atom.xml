@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: terminal | Wei Shi]]></title>
+  <link href="http://weishi.github.io/blog/categories/terminal/atom.xml" rel="self"/>
+  <link href="http://weishi.github.io/"/>
+  <updated>2014-09-27T11:05:44-07:00</updated>
+  <id>http://weishi.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Shi]]></name>
+    <email><![CDATA[weishi@stanford.edu]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Change Tab Color on Terminator and Ubuntu Terminal]]></title>
+    <link href="http://weishi.github.io/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal/"/>
+    <updated>2014-09-27T10:37:00-07:00</updated>
+    <id>http://weishi.github.io/blog/2014/09/27/change-tab-color-in-terminator-and-ubuntu-terminal</id>
+    <content type="html"><![CDATA[<h2>The Problem</h2>
+
+<p>The default color for active tab on Terminator and Ubuntu terminal
+is almost indistinguishable.
+This can be fixed by using another theme,
+but if you want to use your current theme and only tweak the tab color,
+read on.</p>
+
+<p>Because <code>Terminator 0.97</code> still uses GTK2;
+whereas Ubuntu terminal uses GTK3,
+they each require a different method to tweak.</p>
+
+<h2>The Tweak for GTK2</h2>
+
+<p>For <code>Terminator</code> and any other GTK2 applications,
+you can directly edit the <code>gtkrc</code> file your theme uses.</p>
+
+<p><code>
+sudo vim /usr/share/themes/&lt;YOUR_THEME&gt;/gtk-2.0/gtkrc
+</code></p>
+
+<p>Find the following block:</p>
+
+<p>```
+style &ldquo;notebook_bg&rdquo; {</p>
+
+<pre><code>bg[NORMAL] = shade (1.02, @bg_color)
+bg[ACTIVE] = shade (0.97, @bg_color)
+fg[ACTIVE] = mix (0.8, @fg_color, shade (0.97, @bg_color))
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Replace <code>@bg_color</code> in <code>bg[NORMAL]</code> to a color you like,
+e.g. <code>#FCBC8D</code>.</p>
+
+<h2>The Tweak for GTK3</h2>
+
+<p>For <code>terminal</code> and any other GTK3 applications,
+you can edit the <code>gtk.css</code> in your home directory.
+It is located in <code>#HOME/.config/gtk-3.0/gtk.css</code>.
+Create one if it&rsquo;s not there.</p>
+
+<p>Add the following lines to <code>gtk.css</code>:</p>
+
+<p>```
+TerminalWindow .notebook tab:active{</p>
+
+<pre><code>background-color: #FCBC8D;
+</code></pre>
+
+<p>}
+```</p>
+
+<p>For the change to take effect, you need to open up a new application.</p>
+]]></content>
+  </entry>
+  
+</feed>
