@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress, | Wei Shi]]></title>
   <link href="http://weishi.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://weishi.github.io/"/>
-  <updated>2013-09-02T04:31:17-07:00</updated>
+  <updated>2014-09-27T10:32:12-07:00</updated>
   <id>http://weishi.github.io/</id>
   <author>
     <name><![CDATA[Wei Shi]]></name>
@@ -23,7 +23,7 @@
 <p>It seems all the tutorial on Octopress deals with setting up a new repository.
 Recently, I needed to clone the my Octopress repo on a new machine and
 resume writing there. I thought it would be as simple as
-<code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
+<code>git clone</code>, <code>rake setup_github_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
 However I encourtered the following during deploy</p>
 
 <p>```
@@ -50,6 +50,7 @@ Basically, you need to create and link the <code>deploy</code> directory to <cod
 
 <p><code>
 git clone https://github.com/username/username.github.io.git
+cd username.github.io.git
 git checkout source
 </code></p>
 

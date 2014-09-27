@@ -7,7 +7,7 @@
 	<meta name="author" content="Wei Shi">
 
 	
-	<meta name="description" content="Sep 2nd, 2013 Jailbreak, Mountion Lion, OSX, Theos, iPhone Install iOS Header for Theos on OS X Mountain Lion The default Theos installation, as &hellip;">
+	<meta name="description" content="Jul 24th, 2013 Octopress,, github Setup an Existing Octopress Repository After Git Clone The Problem It seems all the tutorial on Octopress deals &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -116,89 +116,6 @@
   
 
 
-<time datetime="2013-09-02T02:47:00-07:00" data-updated="true" itemprop="datePublished">Sep 2<span>nd</span>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/jailbreak/'>Jailbreak</a>, <a class='category' href='/blog/categories/mountion-lion/'>Mountion Lion</a>, <a class='category' href='/blog/categories/osx/'>OSX</a>, <a class='category' href='/blog/categories/theos/'>Theos</a>, <a class='category' href='/blog/categories/iphone/'>iPhone</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/09/02/install-ios-header-for-theos-on-os-x-mountain-lion/" itemprop="url">Install iOS Header for Theos on OS X Mountain Lion</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>The default Theos installation, as outlined in <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">this wiki</a>,
-does not include all iOS headers.
-The following process installs the necessary headers and patches for OSX Mountain Lion.</p>
-
-<ul>
-<li><p>Follow the <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">official wiki</a> to install theos.</p></li>
-<li><p>Add iphoneheader to <code>theos/include</code></p></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/rpetrich/iphoneheaders.git
-</span><span class='line'>mv iphoneheaders/* theos/include/</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Copy <code>IOSurfaceAPI.h</code> from OSX library</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h theos/include/IOSurface </span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Patch <code>IOSurfaceAPI.h</code></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.
-</span><span class='line'>Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface's global use
-</span><span class='line'>count by one until the object is destroyed. */
-</span><span class='line'>//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
-</span><span class='line'>//      IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);
-</span><span class='line'>/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */
-</span><span class='line'>IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
-</span><span class='line'>IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
 <time datetime="2013-07-24T07:25:00-07:00" data-updated="true" itemprop="datePublished">Jul 24<span>th</span>, 2013</time></div>
 		<div class="tags">
 
@@ -216,7 +133,7 @@ The following process installs the necessary headers and patches for OSX Mountai
 <p>It seems all the tutorial on Octopress deals with setting up a new repository.
 Recently, I needed to clone the my Octopress repo on a new machine and
 resume writing there. I thought it would be as simple as
-<code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
+<code>git clone</code>, <code>rake setup_github_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
 However I encourtered the following during deploy</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -251,7 +168,9 @@ Basically, you need to create and link the <code>deploy</code> directory to <cod
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/username/username.github.io.git
+</span><span class='line'>cd username.github.io.git
 </span><span class='line'>git checkout source</span></code></pre></td></tr></table></div></figure>
 
 
@@ -395,7 +314,7 @@ Google <code>WGS2GCJ</code> for more information.</p>
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2013 - Wei Shi -
+  Copyright &copy; 2014 - Wei Shi -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

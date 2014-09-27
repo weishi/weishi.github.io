@@ -105,7 +105,7 @@
 <p>It seems all the tutorial on Octopress deals with setting up a new repository.
 Recently, I needed to clone the my Octopress repo on a new machine and
 resume writing there. I thought it would be as simple as
-<code>git clone</code>, <code>rake setup_getihub_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
+<code>git clone</code>, <code>rake setup_github_pages</code>, <code>rake new_post</code>, and <code>rake gen_deploy</code>.
 However I encourtered the following during deploy</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -140,7 +140,9 @@ Basically, you need to create and link the <code>deploy</code> directory to <cod
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/username/username.github.io.git
+</span><span class='line'>cd username.github.io.git
 </span><span class='line'>git checkout source</span></code></pre></td></tr></table></div></figure>
 
 
@@ -183,7 +185,7 @@ Basically, you need to create and link the <code>deploy</code> directory to <cod
 </div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2013 - Wei Shi -
+  Copyright &copy; 2014 - Wei Shi -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
